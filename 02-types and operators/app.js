@@ -6,3 +6,11 @@ console.log(Number(null)); // 0
 
 console.log(null == 0); // false
 console.log(null < 1); // true
+
+// function greet(name) {
+//   name = name || '<Your name here>';
+//   console.log('Hello ' + name);
+// }
+
+// greet('Tony');
+// greet();
