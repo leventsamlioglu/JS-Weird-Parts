@@ -1,16 +1,10 @@
-var greet = 'Hello!';
-var greet = 'Hola!'; 
+var objectLiteral = {
+    firstname: 'Mary',
+    isAProgrammer: true
+}
 
-console.log(greet);
+console.log(JSON.stringify(objectLiteral));
 
-var english = { 
-    greetings: { 
-        basic: 'Hello!' 
-    } 
-};
+var jsonValue = JSON.parse('{ "firstname": "Mary", "isAProgrammer": true }');
 
-var spanish = {};
-
-spanish.greet = 'Hola!';
-
-console.log(english);
+console.log(jsonValue);
