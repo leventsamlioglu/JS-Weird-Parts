@@ -1,10 +1,21 @@
-var objectLiteral = {
-    firstname: 'Mary',
-    isAProgrammer: true
+greet();
+
+function greet() {
+    console.log('hi');   
 }
 
-console.log(JSON.stringify(objectLiteral));
+var anonymousGreet = function() {
+    console.log('hi');   
+}
 
-var jsonValue = JSON.parse('{ "firstname": "Mary", "isAProgrammer": true }');
+anonymousGreet();
 
-console.log(jsonValue);
+function log(a) {
+   a();    
+}
+
+log(function() {
+    console.log('hi');   
+});
+
+
