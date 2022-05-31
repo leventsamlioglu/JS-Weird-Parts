@@ -1,21 +1,33 @@
-greet();
+// by value (primitives)
+var a = 3;
+var b;
 
-function greet() {
-    console.log('hi');   
+b = a;
+a = 2;
+
+console.log(a);
+console.log(b);
+
+// by reference (all objects (including functions))
+var c = { greeting: 'hi' };
+var d;
+
+d = c;
+c.greeting = 'hello'; // mutate
+
+console.log(c);
+console.log(d);
+
+// by reference (even as parameters)
+function changeGreeting(obj) {
+    obj.greeting = 'Hola'; // mutate   
 }
 
-var anonymousGreet = function() {
-    console.log('hi');   
-}
+changeGreeting(d);
+console.log(c);
+console.log(d);
 
-anonymousGreet();
-
-function log(a) {
-   a();    
-}
-
-log(function() {
-    console.log('hi');   
-});
-
-
+// equals operator sets up new memory space (new address)
+c = { greeting: 'howdy' };
+console.log(c);
+console.log(d);
