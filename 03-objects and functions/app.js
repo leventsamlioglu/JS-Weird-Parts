@@ -1,24 +1,52 @@
-function greet(firstname, lastname, language) {
-        
-    language = language || 'en';
-    
-    if (language === 'en') {
-        console.log('Hello ' + firstname + ' ' + lastname);   
-    }
-    
-    if (language === 'es') {
-        console.log('Hola ' + firstname + ' ' + lastname);   
-    }
-    
+// function statement
+function greet(name) {
+    console.log('Hello ' + name);   
 }
+greet('John');
 
-function greetEnglish(firstname, lastname) {
-    greet(firstname, lastname, 'en');   
-}
+// using a function expression
+var greetFunc = function(name) {
+    console.log('Hello ' + name);
+};
+greetFunc('John');
 
-function greetSpanish(firstname, lastname) {
-    greet(firstname, lastname, 'es');   
-}
+// using an Immediately Invoked Function Expression (IIFE)
+var greeting = function(name) {
+    
+    return 'Hello ' + name;
+    
+}('John');
 
-greetEnglish('John', 'Doe');
-greetSpanish('John', 'Doe');
+console.log(greeting);
+
+// IIFE
+var firstname = 'John';
+
+(function(name) {
+    
+    var greeting = 'Inside IIFE: Hello';
+    console.log(greeting + ' ' + name);
+    
+}(firstname)); // IIFE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
