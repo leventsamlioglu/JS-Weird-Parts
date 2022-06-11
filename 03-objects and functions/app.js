@@ -1,44 +1,51 @@
-function sayHiLater() {
- 
-    var greeting = 'Hi!';
-    
-    setTimeout(function() {
+var person = {
+    firstname: 'John',
+    lastname: 'Doe',
+    getFullName: function() {
         
-        console.log(greeting);
+        var fullname = this.firstname + ' ' + this.lastname;
+        return fullname;
         
-    }, 3000);
+    }
+}
+
+var logName = function(lang1, lang2) {
+
+    console.log('Logged: ' + this.getFullName());
+    console.log('Arguments: ' + lang1 + ' ' + lang2);
+    console.log('-----------');
     
 }
 
-sayHiLater();
+var logPersonName = logName.bind(person);
+logPersonName('en');
 
-// jQuery uses function expressions and first-class functions!
-//$("button").click(function() {
-//    
-//});
+logName.call(person, 'en', 'es');
+logName.apply(person, ['en', 'es']);
 
-function tellMeWhenDone(callback) {
- 
-    var a = 1000; // some work
-    var b = 2000; // some work
+(function(lang1, lang2) {
+
+    console.log('Logged: ' + this.getFullName());
+    console.log('Arguments: ' + lang1 + ' ' + lang2);
+    console.log('-----------');
     
-    callback(); // the 'callback', it runs the function I give it!
-    
+}).apply(person, ['es', 'en']);
+
+// function borrowing
+var person2 = {
+    firstname: 'Jane',
+    lastname: 'Doe'
 }
 
-tellMeWhenDone(function() {
-   
-    console.log('I am done!');
-    
-});
+console.log(person.getFullName.apply(person2));
 
-tellMeWhenDone(function() {
-   
-    console.log('All done...');
-    
-});
+// function currying
+function multiply(a, b) {
+    return a*b;   
+}
 
+var multipleByTwo = multiply.bind(this, 2);
+console.log(multipleByTwo(4));
 
-
-
-
+var multipleByThree = multiply.bind(this, 3);
+console.log(multipleByThree(4));
