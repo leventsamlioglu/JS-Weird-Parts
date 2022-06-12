@@ -1,51 +1,73 @@
-var person = {
-    firstname: 'John',
-    lastname: 'Doe',
-    getFullName: function() {
-        
-        var fullname = this.firstname + ' ' + this.lastname;
-        return fullname;
-        
-    }
-}
-
-var logName = function(lang1, lang2) {
-
-    console.log('Logged: ' + this.getFullName());
-    console.log('Arguments: ' + lang1 + ' ' + lang2);
-    console.log('-----------');
+function mapForEach(arr, fn) {
     
-}
-
-var logPersonName = logName.bind(person);
-logPersonName('en');
-
-logName.call(person, 'en', 'es');
-logName.apply(person, ['en', 'es']);
-
-(function(lang1, lang2) {
-
-    console.log('Logged: ' + this.getFullName());
-    console.log('Arguments: ' + lang1 + ' ' + lang2);
-    console.log('-----------');
+    var newArr = [];
+    for (var i=0; i < arr.length; i++) {
+        newArr.push(
+            fn(arr[i])   
+        )
+    };
     
-}).apply(person, ['es', 'en']);
-
-// function borrowing
-var person2 = {
-    firstname: 'Jane',
-    lastname: 'Doe'
+    return newArr;
 }
 
-console.log(person.getFullName.apply(person2));
+var arr1 = [1,2,3];
+console.log(arr1);
 
-// function currying
-function multiply(a, b) {
-    return a*b;   
+
+var arr2 = mapForEach(arr1, function(item) {
+   return item * 2; 
+});
+console.log(arr2);
+
+
+var arr3 = mapForEach(arr1, function(item) {
+   return item > 2; 
+});
+console.log(arr3);
+
+
+var checkPastLimit = function(limiter, item) {
+    return item > limiter;   
 }
+var arr4 = mapForEach(arr1, checkPastLimit.bind(this, 1));
+console.log(arr4);
 
-var multipleByTwo = multiply.bind(this, 2);
-console.log(multipleByTwo(4));
 
-var multipleByThree = multiply.bind(this, 3);
-console.log(multipleByThree(4));
+var checkPastLimitSimplified = function(limiter) {
+    return function(limiter, item) {
+        return item > limiter;   
+    }.bind(this, limiter); 
+};
+
+var arr5 = mapForEach(arr1, checkPastLimitSimplified(1));
+console.log(arr5);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
