@@ -13,19 +13,34 @@ var john = {
 
 // don't do this EVER! for demo purposes only!!!
 john.__proto__ = person;
-console.log(john.getFullName());
-console.log(john.firstname);
+
+for (var prop in john) {
+    if (john.hasOwnProperty(prop)) {
+        console.log(prop + ': ' + john[prop]);
+    }
+}
 
 var jane = {
-    firstname: 'Jane'   
+    address: '111 Main St.',
+    getFormalFullName: function() {
+        return this.lastname + ', ' + this.firstname;   
+    }
 }
 
-jane.__proto__ = person;
-console.log(jane.getFullName());
-
-person.getFormalFullName = function() {
-    return this.lastname + ', ' + this.firstname;   
+var jim = {
+    getFirstName: function() {
+        return firstname;   
+    }
 }
 
-console.log(john.getFormalFullName());
-console.log(jane.getFormalFullName());
+_.extend(john, jane, jim);
+
+console.log(john);
+
+
+
+
+
+
+
+
